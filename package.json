@@ -1,0 +1,40 @@
+{
+	"name": "ctftime2discord",
+	"version": "1.0.0",
+	"description": "Send CTF time events to discord webhook",
+	"author": {
+		"name": "DarkGuy10",
+		"url": "https://github.com/DarkGuy10"
+	},
+	"repository": "github:DarkGuy10/ctftime2discord",
+	"bugs": {
+		"url": "https://github.com/DarkGuy10/ctftime2discord/issues"
+	},
+	"license": "MIT",
+	"private": true,
+	"exports": {
+		".": "./dist/index.js"
+	},
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"bundle": "yarn format:write && yarn package",
+		"format:write": "prettier --write src/*.ts",
+		"format:check": "prettier --check src/*.ts",
+		"package": "ncc build src/index.ts --license licenses.txt",
+		"package:watch": "yarn package -- --watch"
+	},
+	"dependencies": {
+		"@actions/core": "^1.11.1"
+	},
+	"devDependencies": {
+		"@darkguy10/prettier-config": "^1.0.0",
+		"@types/node": "^24.0.1",
+		"@vercel/ncc": "^0.38.3",
+		"prettier": "^3.5.3",
+		"typescript": "^5.3.3"
+	},
+	"prettier": "@darkguy10/prettier-config",
+	"packageManager": "yarn@4.9.2"
+}

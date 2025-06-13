@@ -1,6 +1,6 @@
-name: CTFTime Update to Discord Webhook
+name: ctftime2discord
 author: DarkGuy10
-description: GitHub Action for sending CTFTime updates to discord webhook
+description: A simple, customizable github action that fetches CTFTime events and sends updates through a Discord webhook.
 
 inputs:
   webhook_url:
@@ -38,5 +38,5 @@ runs:
   main: dist/index.js
 
 branding:
-  icon: upload-cloud
-  color: blue
+  icon: zap
+  color: yellow

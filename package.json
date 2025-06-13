@@ -16,7 +16,7 @@
 		".": "./dist/index.js"
 	},
 	"engines": {
-		"node": ">=22"
+		"node": ">=20"
 	},
 	"scripts": {
 		"bundle": "yarn format:write && yarn package",

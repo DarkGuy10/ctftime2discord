@@ -25661,7 +25661,7 @@ function buildEmbed(eventData) {
         const entry = `- [**${title}**](${url}): <t:${startTS}> to <t:${finishTS}>\n` +
             `${description.split('\n')[0]}` +
             `-# [[ CTFtime Link ]](${ctftime_url})    ` +
-            (discordInvite ? `[[ Discord Server ]](${url})` : '');
+            (discordInvite ? `[[ Discord Server ]](${discordInvite[0]})` : '');
         return entry;
     })
         .join('\n\n');

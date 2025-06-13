@@ -12,7 +12,7 @@ interface Event {
     hours: number
     days: number
   }
-  live_feed: ''
+  live_feed: string
   logo: string
   id: number
   title: number

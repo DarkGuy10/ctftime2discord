@@ -1,7 +1,9 @@
-import { Event } from './types'
+import { ActionConfig, Event } from './types'
 import { getTimestamp } from './utils'
 
-function buildEmbed(eventData: Event[]) {
+function buildEmbed(eventData: Event[], config: ActionConfig) {
+  const { footerIcon, footerText, embedColor } = config
+
   const description = eventData
     .map(({ title, start, finish, url, description, ctftime_url }) => {
       const startTS = getTimestamp(new Date(start))
@@ -21,33 +23,35 @@ function buildEmbed(eventData: Event[]) {
     })
     .join('\n\n')
 
-  const embed = {
+  let embed = {
     title: 'Upcoming CTF Events!',
     type: 'rich',
     description,
     timestamp: new Date().toISOString(),
     footer: {
-      text: 'Doggo fetched everything very fast',
-      icon_url: 'https://i.imgur.com/cuEp3vr.gif',
+      text: footerText,
+      icon_url: footerIcon,
     },
-    color: 9419963,
+    author: {
+      name: 'ctftime2discord',
+      url: 'https://github.com/DarkGuy10/ctftime2discord',
+    },
+    color: embedColor,
   }
   return embed
 }
 
-export async function executeWebhook(
-  webhookURL: string,
-  eventData: Event[],
-  messageContent: string
-) {
+export async function executeWebhook(eventData: Event[], config: ActionConfig) {
+  const { webhookUrl, messageContent, appUsername, appAvatar } = config
+
   const body = {
-    username: 'Watch Doggo',
-    avatar_url: 'https://i.imgur.com/cuEp3vr.gif',
+    username: appUsername,
+    avatar_url: appAvatar,
     content: messageContent,
-    embeds: [buildEmbed(eventData)],
+    embeds: [buildEmbed(eventData, config)],
   }
 
-  await fetch(webhookURL, {
+  const res = await fetch(webhookUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -55,5 +59,10 @@ export async function executeWebhook(
     },
     body: JSON.stringify(body),
   })
-  console.log('Webhook executed sent succesfully!')
+
+  if (res.status !== 204) {
+    throw new Error(`Discord webhook failed with response: ${await res.text()}`)
+  }
+
+  console.log('Webhook executed succesfully!')
 }

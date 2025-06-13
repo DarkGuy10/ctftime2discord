@@ -25651,7 +25651,8 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.executeWebhook = executeWebhook;
 const utils_1 = __nccwpck_require__(1798);
-function buildEmbed(eventData) {
+function buildEmbed(eventData, config) {
+    const { footerIcon, footerText, embedColor } = config;
     const description = eventData
         .map(({ title, start, finish, url, description, ctftime_url }) => {
         const startTS = (0, utils_1.getTimestamp)(new Date(start));
@@ -25665,27 +25666,32 @@ function buildEmbed(eventData) {
         return entry;
     })
         .join('\n\n');
-    const embed = {
+    let embed = {
         title: 'Upcoming CTF Events!',
         type: 'rich',
         description,
         timestamp: new Date().toISOString(),
         footer: {
-            text: 'Doggo fetched everything very fast',
-            icon_url: 'https://i.imgur.com/cuEp3vr.gif',
+            text: footerText,
+            icon_url: footerIcon,
         },
-        color: 9419963,
+        author: {
+            name: 'ctftime2discord',
+            url: 'https://github.com/DarkGuy10/ctftime2discord',
+        },
+        color: embedColor,
     };
     return embed;
 }
-async function executeWebhook(webhookURL, eventData, messageContent) {
+async function executeWebhook(eventData, config) {
+    const { webhookUrl, messageContent, appUsername, appAvatar } = config;
     const body = {
-        username: 'Watch Doggo',
-        avatar_url: 'https://i.imgur.com/cuEp3vr.gif',
+        username: appUsername,
+        avatar_url: appAvatar,
         content: messageContent,
-        embeds: [buildEmbed(eventData)],
+        embeds: [buildEmbed(eventData, config)],
     };
-    await fetch(webhookURL, {
+    const res = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -25693,7 +25699,10 @@ async function executeWebhook(webhookURL, eventData, messageContent) {
         },
         body: JSON.stringify(body),
     });
-    console.log('Webhook executed sent succesfully!');
+    if (res.status !== 204) {
+        throw new Error(`Discord webhook failed with response: ${await res.text()}`);
+    }
+    console.log('Webhook executed succesfully!');
 }
 
 
@@ -25707,15 +25716,18 @@ async function executeWebhook(webhookURL, eventData, messageContent) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.fetchEvents = fetchEvents;
 const utils_1 = __nccwpck_require__(1798);
-async function fetchEvents(windowSize) {
+async function fetchEvents(windowSize, config) {
     const windowStart = (0, utils_1.getTimestamp)(new Date());
     const windowEnd = windowStart + windowSize * 24 * 3600;
-    console.log(`https://ctftime.org/api/v1/events/?limit=100&start=${windowStart}&finish=${windowEnd}`);
     const res = await fetch(`https://ctftime.org/api/v1/events/?limit=100&start=${windowStart}&finish=${windowEnd}`);
-    const allEvents = (await res.json());
-    const filteredEvents = allEvents.filter(e => !e.onsite);
-    console.log(`Fetched ${allEvents.length} events, out of which ${filteredEvents.length} are online.`);
-    return filteredEvents;
+    if (res.status !== 200) {
+        throw new Error(`Ctftime api failed with response: ${await res.text()}`);
+    }
+    let events = (await res.json());
+    if (config.filterOnline)
+        events = events.filter(e => !e.onsite);
+    console.log(`Fetched ${events.length} events`);
+    return events;
 }
 
 
@@ -25766,11 +25778,30 @@ const fetchEvents_1 = __nccwpck_require__(9850);
 const executeWebhook_1 = __nccwpck_require__(1427);
 async function run() {
     try {
-        const webhookURL = core.getInput('webhook_url', { required: true });
+        const webhookUrl = core.getInput('webhook_url', { required: true });
         const windowSize = parseInt(core.getInput('window_size', { required: true }), 10);
         const messageContent = core.getInput('message_content');
-        const eventData = await (0, fetchEvents_1.fetchEvents)(windowSize);
-        await (0, executeWebhook_1.executeWebhook)(webhookURL, eventData, messageContent);
+        const embedColor = parseInt(core.getInput('embed_color', { required: true }), 10);
+        const appUsername = core.getInput('app_username', { required: true });
+        const appAvatar = core.getInput('app_avatar');
+        const footerText = core.getInput('footer_text');
+        const footerIcon = core.getInput('footer_icon');
+        const filterOnline = core.getBooleanInput('filter_online', {
+            required: true,
+        });
+        const config = {
+            webhookUrl,
+            windowSize,
+            messageContent,
+            embedColor,
+            appAvatar,
+            appUsername,
+            footerIcon,
+            footerText,
+            filterOnline,
+        };
+        const eventData = await (0, fetchEvents_1.fetchEvents)(windowSize, config);
+        await (0, executeWebhook_1.executeWebhook)(eventData, config);
     }
     catch (error) {
         core.setFailed(`Action failed with error ${error}`);

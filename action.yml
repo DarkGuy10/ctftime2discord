@@ -7,11 +7,31 @@ inputs:
     description: The Webhook URL
     required: true
   window_size:
-    description: Size of fetch window
+    description: Size of fetch window (days)
     required: true
   message_content:
-    description: Message content (optional)
+    description: Message content
     required: false
+  embed_color:
+    description: Color of discord embed (decimal)
+    required: false
+    default: '9419963'
+  app_username:
+    description: Username for the app
+    required: true
+  app_avatar:
+    description: Avatar url for the app
+    required: false
+  footer_text:
+    description: Footer text of discord embed
+    required: false
+  footer_icon:
+    description: Url for footer icon image
+    required: false
+  filter_online:
+    description: Filter ctf events to include only the online ones
+    required: false
+    default: 'false'
 
 runs:
   using: node20

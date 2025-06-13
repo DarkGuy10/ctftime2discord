@@ -31,4 +31,16 @@ interface Event {
   public_votable: boolean
 }
 
-export { Event }
+interface ActionConfig {
+  webhookUrl: string
+  windowSize: number
+  messageContent: string
+  embedColor: number
+  appUsername: string
+  appAvatar: string
+  footerText: string
+  footerIcon: string
+  filterOnline: boolean
+}
+
+export { Event, ActionConfig }

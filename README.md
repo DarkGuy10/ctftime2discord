@@ -65,8 +65,8 @@ jobs:
       - name: Check out git repository
         uses: actions/checkout@v4
 
-      - name: Execute action
-        uses: ./
+      - name: ctftime2discord
+        uses: DarkGuy10/ctftime2discord@v1.0.0
         with:
           webhook_url: ${{ secrets.WEBHOOK_URL }}
           window_size: 4

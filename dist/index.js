@@ -25734,59 +25734,26 @@ async function fetchEvents(windowSize, config) {
 /***/ }),
 
 /***/ 1730:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.run = run;
-const core = __importStar(__nccwpck_require__(7484));
+const core_1 = __nccwpck_require__(7484);
 const fetchEvents_1 = __nccwpck_require__(9850);
 const executeWebhook_1 = __nccwpck_require__(1427);
 async function run() {
     try {
-        const webhookUrl = core.getInput('webhook_url', { required: true });
-        const windowSize = parseInt(core.getInput('window_size', { required: true }), 10);
-        const messageContent = core.getInput('message_content');
-        const embedColor = parseInt(core.getInput('embed_color', { required: true }), 10);
-        const appUsername = core.getInput('app_username', { required: true });
-        const appAvatar = core.getInput('app_avatar');
-        const footerText = core.getInput('footer_text');
-        const footerIcon = core.getInput('footer_icon');
-        const filterOnline = core.getBooleanInput('filter_online', {
+        const webhookUrl = (0, core_1.getInput)('webhook_url', { required: true });
+        const windowSize = parseInt((0, core_1.getInput)('window_size', { required: true }), 10);
+        const messageContent = (0, core_1.getInput)('message_content');
+        const embedColor = parseInt((0, core_1.getInput)('embed_color', { required: true }), 10);
+        const appUsername = (0, core_1.getInput)('app_username', { required: true });
+        const appAvatar = (0, core_1.getInput)('app_avatar');
+        const footerText = (0, core_1.getInput)('footer_text');
+        const footerIcon = (0, core_1.getInput)('footer_icon');
+        const filterOnline = (0, core_1.getBooleanInput)('filter_online', {
             required: true,
         });
         const config = {
@@ -25804,7 +25771,7 @@ async function run() {
         await (0, executeWebhook_1.executeWebhook)(eventData, config);
     }
     catch (error) {
-        core.setFailed(`Action failed with error ${error}`);
+        (0, core_1.setFailed)(`Action failed with error ${error}`);
     }
 }
 

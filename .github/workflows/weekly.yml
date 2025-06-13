@@ -20,6 +20,10 @@ jobs:
         with:
           webhook_url: ${{ secrets.WEBHOOK_URL }}
           window_size: 4
-          message_content: '<@&1381971729680961566>'
-
-
+          message_content: <@&1381971729680961566>
+          app_username: Watch Doggo
+          app_avatar: https://i.imgur.com/cuEp3vr.gif
+          embed_color: 11845374
+          footer_text: Doggo fetched everything very fast
+          footer_icon: https://i.imgur.com/cuEp3vr.gif
+          filter_online: true

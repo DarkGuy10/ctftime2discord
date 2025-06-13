@@ -41,10 +41,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@darkguy10/prettier-config@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@darkguy10/prettier-config@npm:1.0.0"
-  checksum: 10c0/e21c8f0d6ef0269d9b484ea087cc666186e745eed9e51c26159e5aed120ae82bd965eb218d30ca8c8434307d24551586e493def66f68a91c26c7cad6594c0dd3
+"@darkguy10/prettier-config@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@darkguy10/prettier-config@npm:1.1.0"
+  checksum: 10c0/72178d543071709d9f80389fd74dfe440adc1fba84f6d3fc7175fddcab219a423bcb19f7002db9ef18ddd9c20677bb916375b0bf4ab4f9da4bba940ac070661b
   languageName: node
   linkType: hard
 
@@ -246,7 +246,7 @@ __metadata:
   resolution: "ctftime2discord@workspace:."
   dependencies:
     "@actions/core": "npm:^1.11.1"
-    "@darkguy10/prettier-config": "npm:^1.0.0"
+    "@darkguy10/prettier-config": "npm:^1.1.0"
     "@types/node": "npm:^24.0.1"
     "@vercel/ncc": "npm:^0.38.3"
     prettier: "npm:^3.5.3"

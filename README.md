@@ -66,7 +66,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: ctftime2discord
-        uses: DarkGuy10/ctftime2discord@v1.0.0
+        uses: DarkGuy10/ctftime2discord@latest
         with:
           webhook_url: ${{ secrets.WEBHOOK_URL }}
           window_size: 4

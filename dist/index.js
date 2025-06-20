@@ -25643,24 +25643,25 @@ module.exports = {
 
 /***/ }),
 
-/***/ 1427:
+/***/ 8558:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.executeWebhook = executeWebhook;
+exports.buildEmbed = buildEmbed;
 const utils_1 = __nccwpck_require__(1798);
 function buildEmbed(eventData, config) {
     const { footerIcon, footerText, embedColor } = config;
     const description = eventData
-        .map(({ title, start, finish, url, description, ctftime_url }) => {
+        .map(({ title, start, finish, url, description, ctftime_url, weight }) => {
         const startTS = (0, utils_1.getTimestamp)(new Date(start));
         const finishTS = (0, utils_1.getTimestamp)(new Date(finish));
         const discordInviteRegex = new RegExp(/https:\/\/discord.gg\/[0-9a-zA-Z]+/m);
         const discordInvite = description.match(discordInviteRegex);
         const entry = `- [**${title}**](${url}): <t:${startTS}> to <t:${finishTS}>\n` +
             `${description.split('\n')[0]}` +
+            `Weight: ${weight}\n` +
             `-# [[ CTFtime Link ]](${ctftime_url})    ` +
             (discordInvite ? `[[ Discord Server ]](${discordInvite[0]})` : '');
         return entry;
@@ -25683,13 +25684,25 @@ function buildEmbed(eventData, config) {
     };
     return embed;
 }
+
+
+/***/ }),
+
+/***/ 1427:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.executeWebhook = executeWebhook;
+const buildEmbed_1 = __nccwpck_require__(8558);
 async function executeWebhook(eventData, config) {
     const { webhookUrl, messageContent, appUsername, appAvatar } = config;
     const body = {
         username: appUsername,
         avatar_url: appAvatar,
         content: messageContent,
-        embeds: [buildEmbed(eventData, config)],
+        embeds: [(0, buildEmbed_1.buildEmbed)(eventData, config)],
     };
     const res = await fetch(webhookUrl, {
         method: 'POST',

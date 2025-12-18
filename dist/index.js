@@ -616,8 +616,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.OidcClient = void 0;
-const http_client_1 = __nccwpck_require__(4844);
-const auth_1 = __nccwpck_require__(4552);
+const http_client_1 = __nccwpck_require__(8163);
+const auth_1 = __nccwpck_require__(7481);
 const core_1 = __nccwpck_require__(7484);
 class OidcClient {
     static createHttpClient(allowRetry = true, maxRetry = 10) {
@@ -816,7 +816,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.isLinux = exports.isMacOS = exports.isWindows = exports.arch = exports.platform = void 0;
 exports.getDetails = getDetails;
 const os_1 = __importDefault(__nccwpck_require__(857));
-const exec = __importStar(__nccwpck_require__(5236));
+const exec = __importStar(__nccwpck_require__(7251));
 const getWindowsInfo = () => __awaiter(void 0, void 0, void 0, function* () {
     const { stdout: version } = yield exec.getExecOutput('powershell -command "(Get-CimInstance -ClassName Win32_OperatingSystem).Version"', undefined, {
         silent: true
@@ -1209,7 +1209,7 @@ function toCommandProperties(annotationProperties) {
 
 /***/ }),
 
-/***/ 5236:
+/***/ 7251:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -1260,7 +1260,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.exec = exec;
 exports.getExecOutput = getExecOutput;
 const string_decoder_1 = __nccwpck_require__(3193);
-const tr = __importStar(__nccwpck_require__(6665));
+const tr = __importStar(__nccwpck_require__(5982));
 /**
  * Exec a command.
  * Output will be streamed to the live console.
@@ -1332,7 +1332,7 @@ function getExecOutput(commandLine, args, options) {
 
 /***/ }),
 
-/***/ 6665:
+/***/ 5982:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -1386,8 +1386,8 @@ const os = __importStar(__nccwpck_require__(857));
 const events = __importStar(__nccwpck_require__(4434));
 const child = __importStar(__nccwpck_require__(5317));
 const path = __importStar(__nccwpck_require__(6928));
-const io = __importStar(__nccwpck_require__(4994));
-const ioUtil = __importStar(__nccwpck_require__(5207));
+const io = __importStar(__nccwpck_require__(6757));
+const ioUtil = __importStar(__nccwpck_require__(2594));
 const timers_1 = __nccwpck_require__(3557);
 /* eslint-disable @typescript-eslint/unbound-method */
 const IS_WINDOWS = process.platform === 'win32';
@@ -1964,7 +1964,7 @@ class ExecState extends events.EventEmitter {
 
 /***/ }),
 
-/***/ 4552:
+/***/ 7481:
 /***/ (function(__unused_webpack_module, exports) {
 
 "use strict";
@@ -2052,7 +2052,7 @@ exports.PersonalAccessTokenCredentialHandler = PersonalAccessTokenCredentialHand
 
 /***/ }),
 
-/***/ 4844:
+/***/ 8163:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -2106,7 +2106,7 @@ exports.getProxyUrl = getProxyUrl;
 exports.isHttps = isHttps;
 const http = __importStar(__nccwpck_require__(8611));
 const https = __importStar(__nccwpck_require__(5692));
-const pm = __importStar(__nccwpck_require__(4988));
+const pm = __importStar(__nccwpck_require__(3695));
 const tunnel = __importStar(__nccwpck_require__(770));
 const undici_1 = __nccwpck_require__(6752);
 var HttpCodes;
@@ -2785,7 +2785,7 @@ const lowercaseKeys = (obj) => Object.keys(obj).reduce((c, k) => ((c[k.toLowerCa
 
 /***/ }),
 
-/***/ 4988:
+/***/ 3695:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -2886,7 +2886,7 @@ class DecodedURL extends URL {
 
 /***/ }),
 
-/***/ 5207:
+/***/ 2594:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -3117,7 +3117,7 @@ function getCmdPath() {
 
 /***/ }),
 
-/***/ 4994:
+/***/ 6757:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -3173,7 +3173,7 @@ exports.which = which;
 exports.findInPath = findInPath;
 const assert_1 = __nccwpck_require__(2613);
 const path = __importStar(__nccwpck_require__(6928));
-const ioUtil = __importStar(__nccwpck_require__(5207));
+const ioUtil = __importStar(__nccwpck_require__(2594));
 /**
  * Copies a file or folder.
  * Based off of shelljs - https://github.com/shelljs/shelljs/blob/9237f66c52e5daa40458f94f9565e18e8132f5a6/src/cp.js

@@ -1137,12 +1137,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^24.5.2":
-  version: 24.5.2
-  resolution: "@types/node@npm:24.5.2"
+"@types/node@npm:^25.0.3":
+  version: 25.0.3
+  resolution: "@types/node@npm:25.0.3"
   dependencies:
-    undici-types: "npm:~7.12.0"
-  checksum: 10c0/96baaca6564d39c6f7f6eddd73ce41e2a7594ef37225cd52df3be36fad31712af8ae178387a72d0b80f2e2799e7fd30c014bc0ae9eb9f962d9079b691be00c48
+    undici-types: "npm:~7.16.0"
+  checksum: 10c0/b7568f0d765d9469621615e2bb257c7fd1953d95e9acbdb58dffb6627a2c4150d405a4600aa1ad8a40182a94fe5f903cafd3c0a2f5132814debd0e3bfd61f835
   languageName: node
   linkType: hard
 
@@ -1569,7 +1569,7 @@ __metadata:
     "@actions/core": "npm:^2.0.1"
     "@darkguy10/prettier-config": "npm:^1.1.0"
     "@github/local-action": "npm:^6.0.2"
-    "@types/node": "npm:^24.5.2"
+    "@types/node": "npm:^25.0.3"
     "@vercel/ncc": "npm:^0.38.4"
     prettier: "npm:^3.7.4"
     typescript: "npm:^5.9.3"
@@ -3039,10 +3039,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~7.12.0":
-  version: 7.12.0
-  resolution: "undici-types@npm:7.12.0"
-  checksum: 10c0/326e455bbc0026db1d6b81c76a1cf10c63f7e2f9821db2e24fdc258f482814e5bfa8481f8910d07c68e305937c5c049610fdc441c5e8b7bb0daca7154fb8a306
+"undici-types@npm:~7.16.0":
+  version: 7.16.0
+  resolution: "undici-types@npm:7.16.0"
+  checksum: 10c0/3033e2f2b5c9f1504bdc5934646cb54e37ecaca0f9249c983f7b1fc2e87c6d18399ebb05dc7fd5419e02b2e915f734d872a65da2e3eeed1813951c427d33cc9a
   languageName: node
   linkType: hard
 

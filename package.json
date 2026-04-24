@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@darkguy10/prettier-config": "^1.1.0",
-    "@github/local-action": "^6.0.2",
+    "@github/local-action": "^7.0.1",
     "@types/node": "^24.5.2",
     "@vercel/ncc": "^0.38.4",
     "prettier": "^3.7.4",
